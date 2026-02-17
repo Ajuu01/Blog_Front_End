@@ -1,33 +1,34 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
+  
   return (
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="/" className="text-2xl font-bold text-blue-600">
+            <Link to="/" className="text-2xl font-bold text-blue-600">
               MyBlog
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6">
-            <a href="/" className="text-gray-700 hover:text-blue-600">
+            <Link to="/" className="text-gray-700 hover:text-blue-600">
               Home
-            </a>
-            <a href="/about" className="text-gray-700 hover:text-blue-600">
+            </Link>
+            <Link to="/about" className="text-gray-700 hover:text-blue-600">
               About
-            </a>
-            <a href="/blogs" className="text-gray-700 hover:text-blue-600">
+            </Link>
+            <Link to="/" className="text-gray-700 hover:text-blue-600">
               Blogs
-            </a>
-            <a href="/contact" className="text-gray-700 hover:text-blue-600">
-              Contact
-            </a>
+            </Link>
+            <Link to="/create" className="text-gray-700 hover:text-blue-600">
+              Create Blogs
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}

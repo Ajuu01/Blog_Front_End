@@ -20,7 +20,7 @@ function SingleBlog(){
         const response= await axios.delete("http://localhost:3000/blog/"+id)
         console.log(response.status)
         if(response.status==200){
-            alert("DeletedSuccessfully!!")
+            alert("Deleted Successfully!!")
             navigate("/")
         }
         else{
