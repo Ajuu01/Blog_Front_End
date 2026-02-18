@@ -9,7 +9,7 @@ function CreateBlog(){
             title:"",
             subtitle:"",
             description:"",
-            image:""
+            image:null
     })
     const handleChange=(event)=>{
         const value=event.target.value
