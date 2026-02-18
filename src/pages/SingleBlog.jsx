@@ -8,7 +8,7 @@ function SingleBlog(){
     const [blog,setBlog]=useState({})
     const navigate=useNavigate()
     const fetchSingleBlog= async()=>{
-        const response=await axios.get("http://localhost:3000/blog/"+id)
+        const response=await axios.get("https://mern-3-0.onrender.com/blog/"+id)
         setBlog(response.data.data)
     }
 
@@ -17,7 +17,7 @@ function SingleBlog(){
     })
 
     const deleteBlog=async()=>{
-        const response= await axios.delete("http://localhost:3000/blog/"+id)
+        const response= await axios.delete("https://mern-3-0.onrender.com/blog/"+id)
         console.log(response.status)
         if(response.status==200){
             alert("Deleted Successfully!!")
@@ -36,7 +36,7 @@ function SingleBlog(){
                 <div className="flex flex-col md:flex-row -mx-4">
                     <div className="md:flex-1 px-4">
                         <div className="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
-                            <img className="w-full h-full object-cover" src={"http://localhost:3000/"+blog.image} alt="Product Image"/>
+                            <img className="w-full h-full object-cover" src={"https://mern-3-0.onrender.com/"+blog.image} alt="Product Image"/>
                         </div>
                         <div className="flex -mx-2 mb-4">
                             <div className="w-1/2 px-2">

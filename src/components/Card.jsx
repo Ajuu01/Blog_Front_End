@@ -8,7 +8,7 @@ function Card({blog}) {
           {/* Image */}
           <img
             className="w-full h-48 object-cover"
-            src={"http://localhost:3000/"+blog.image}
+            src={"https://mern-3-0.onrender.com/"+blog.image}
             alt="Sunset in the mountains"
           />
 
