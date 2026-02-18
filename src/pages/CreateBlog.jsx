@@ -20,7 +20,7 @@ function CreateBlog(){
             ...data,
             [name]: name === "image" ? event.target.files[0] : value
         })
-        console.log(data)
+        console.log( event.target.files[0])
     }
     const createBlog=async(e)=>{
         e.preventDefault()
