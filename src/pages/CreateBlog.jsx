@@ -22,20 +22,49 @@ function CreateBlog(){
         })
         console.log( event.target.files[0])
     }
-    const createBlog=async(e)=>{
-        e.preventDefault()
-        const response=await axios.post("https://mern-3-0-1.onrender.com/blog",data,{
-            headers:{
-                "Content-Type":"multipart/form-data"
+    // const createBlog=async(e)=>{
+    //     e.preventDefault()
+    //     const response=await axios.post("https://mern-3-0-1.onrender.com/blog",data,{
+    //         headers:{
+    //             "Content-Type":"multipart/form-data"
+    //         }
+    //     })
+    //     if(response.status===200){
+    //         navigate("/")
+    //     }
+    //     else{
+    //         alert("Something Went Wrong!")
+    //     }
+    // }
+    const createBlog = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("title", data.title);
+        formData.append("subtitle", data.subtitle);
+        formData.append("description", data.description);
+
+        // Only append the file if the user selected one
+        if (data.image instanceof File) {
+            formData.append("image", data.image);
+        }
+
+        try {
+            const response = await axios.post(
+                "https://mern-3-0-1.onrender.com/blog",
+                formData,
+                { headers: { "Content-Type": "multipart/form-data" } }
+            );
+
+            if (response.status === 200) {
+                navigate("/");
             }
-        })
-        if(response.status===200){
-            navigate("/")
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong!");
         }
-        else{
-            alert("Something Went Wrong!")
-        }
-    }
+    };
+
     return(
         <>
             <Navbar/>
