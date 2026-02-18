@@ -1,192 +1,67 @@
-// import { useState } from "react";
-// import Navbar from "../components/Navbar";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-
-// function CreateBlog(){
-//     const navigate=useNavigate()
-//     const [data,setData]=useState({
-//             title:"",
-//             subtitle:"",
-//             description:"",
-//             image:""
-//     })
-//     const handleChange=(event)=>{
-//         const value=event.target.value
-//         const name=event.target.name
-
-//         // const{name,value}=event.target
-//         setData({
-//             ...data,
-//             [name]: name === "image" ? event.target.files[0] : value
-//         })
-//         console.log( event.target.files[0])
-//     }
-//     const createBlog=async(e)=>{
-//         e.preventDefault()
-//         const response=await axios.post("https://mern-3-0-1.onrender.com/blog",data,{
-//             headers:{
-//                 "Content-Type":"multipart/form-data"
-//             }
-//         })
-//         if(response.status===200){
-//             navigate("/")
-//         }
-//         else{
-//             alert("Something Went Wrong!")
-//         }
-//     }
-//     return(
-//         <>
-//             <Navbar/>
-//             <div className="mx-14 mt-10 border-2 border-blue-400 rounded-lg">
-//                 <div className="mt-10 text-center font-bold">Wanna Create a Blog?</div>
-//                 <div className="mt-3 text-center text-4xl font-bold">Create a Blog</div>
-//                 <form onSubmit={createBlog}>
-//                 <div className="p-8">
-//                     <div className="flex gap-4">
-//                         <input type="text" name="title" className="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" placeholder="Title *" onChange={handleChange}/>
-//                         <input type="text" name="subtitle" className="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" placeholder="Subtitle *" onChange={handleChange}/>
-//                     </div>
-//                     <div className="my-6 flex gap-4">
-//                         <input type="file" name="image" className="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"  onChange={handleChange}/>
-//                     </div>
-//                     <div className="">
-//                         <textarea name="description" id="text" cols="30" rows="10" className="mb-10 h-40 w-full resize-none rounded-md border border-slate-300 p-5 font-semibold text-gray-300" onChange={handleChange} placeholder="Description *"></textarea>
-//                     </div>
-//                     <div className="text-center">
-//                         <button type="submit" className="cursor-pointer rounded-lg bg-blue-700 px-8 py-5 text-sm font-semibold text-white">Create Blog</button>
-//                     </div>
-//                 </div>
-//                 </form>
-//             </div>
-//         </>
-//     );
-// }
-
-// export default CreateBlog
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function CreateBlog() {
-  const navigate = useNavigate();
+function CreateBlog(){
+    const navigate=useNavigate()
+    const [data,setData]=useState({
+            title:"",
+            subtitle:"",
+            description:"",
+            image:""
+    })
+    const handleChange=(event)=>{
+        const value=event.target.value
+        const name=event.target.name
 
-  // State for blog data
-  const [data, setData] = useState({
-    title: "",
-    subtitle: "",
-    description: "",
-    image: null, // must be null to store File object
-  });
-
-  // Handle input changes
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-
-    setData({
-      ...data,
-      [name]: name === "image" ? files[0] : value, // handle file
-    });
-  };
-
-  // Submit form
-  const createBlog = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Use FormData for file upload
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("subtitle", data.subtitle);
-      formData.append("description", data.description);
-
-      if (data.image) {
-        formData.append("image", data.image);
-      }
-
-      const response = await axios.post(
-        "https://mern-3-0-1.onrender.com/blog",
-        formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
-
-      if (response.status === 200) {
-        navigate("/");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Something went wrong while creating the blog!");
+        // const{name,value}=event.target
+        setData({
+            ...data,
+            [name]: name === "image" ? event.target.files[0] : value
+        })
+        console.log( event.target.files[0])
     }
-  };
-
-  return (
-    <>
-      <Navbar />
-      <div className="mx-14 mt-10 border-2 border-blue-400 rounded-lg">
-        <div className="mt-10 text-center font-bold">Wanna Create a Blog?</div>
-        <div className="mt-3 text-center text-4xl font-bold">Create a Blog</div>
-
-        <form onSubmit={createBlog}>
-          <div className="p-8">
-            <div className="flex gap-4">
-              <input
-                type="text"
-                name="title"
-                className="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
-                placeholder="Title *"
-                onChange={handleChange}
-                value={data.title}
-                required
-              />
-              <input
-                type="text"
-                name="subtitle"
-                className="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
-                placeholder="Subtitle *"
-                onChange={handleChange}
-                value={data.subtitle}
-                required
-              />
+    const createBlog=async(e)=>{
+        e.preventDefault()
+        const response=await axios.post("https://mern-3-0-1.onrender.com/blog",data,{
+            headers:{
+                "Content-Type":"multipart/form-data"
+            }
+        })
+        if(response.status===200){
+            navigate("/")
+        }
+        else{
+            alert("Something Went Wrong!")
+        }
+    }
+    return(
+        <>
+            <Navbar/>
+            <div className="mx-14 mt-10 border-2 border-blue-400 rounded-lg">
+                <div className="mt-10 text-center font-bold">Wanna Create a Blog?</div>
+                <div className="mt-3 text-center text-4xl font-bold">Create a Blog</div>
+                <form onSubmit={createBlog}>
+                <div className="p-8">
+                    <div className="flex gap-4">
+                        <input type="text" name="title" className="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" placeholder="Title *" onChange={handleChange}/>
+                        <input type="text" name="subtitle" className="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" placeholder="Subtitle *" onChange={handleChange}/>
+                    </div>
+                    <div className="my-6 flex gap-4">
+                        <input type="file" name="image" className="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"  onChange={handleChange}/>
+                    </div>
+                    <div className="">
+                        <textarea name="description" id="text" cols="30" rows="10" className="mb-10 h-40 w-full resize-none rounded-md border border-slate-300 p-5 font-semibold text-gray-300" onChange={handleChange} placeholder="Description *"></textarea>
+                    </div>
+                    <div className="text-center">
+                        <button type="submit" className="cursor-pointer rounded-lg bg-blue-700 px-8 py-5 text-sm font-semibold text-white">Create Blog</button>
+                    </div>
+                </div>
+                </form>
             </div>
-
-            <div className="my-6 flex gap-4">
-              <input
-                type="file"
-                name="image"
-                className="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
-                onChange={handleChange}
-                accept="image/*"
-              />
-            </div>
-
-            <div>
-              <textarea
-                name="description"
-                cols="30"
-                rows="10"
-                className="mb-10 h-40 w-full resize-none rounded-md border border-slate-300 p-5 font-semibold text-gray-700"
-                placeholder="Description *"
-                onChange={handleChange}
-                value={data.description}
-                required
-              ></textarea>
-            </div>
-
-            <div className="text-center">
-              <button
-                type="submit"
-                className="cursor-pointer rounded-lg bg-blue-700 px-8 py-5 text-sm font-semibold text-white"
-              >
-                Create Blog
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </>
-  );
+        </>
+    );
 }
 
-export default CreateBlog;
+export default CreateBlog
