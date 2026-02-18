@@ -7,7 +7,7 @@ import { data } from "react-router-dom"
 function Home(){
     const [blogs,setBlogs]=useState([])
     const fetchBlogs= async()=>{
-        const response=await axios.get('https://mern-3-0.onrender.com/blog')
+        const response=await axios.get('https://mern-3-0-1.onrender.com/blog')
         setBlogs(response.data.data)
     }
 
