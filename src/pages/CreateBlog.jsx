@@ -11,17 +11,25 @@ function CreateBlog(){
             description:"",
             image:null
     })
-    const handleChange=(event)=>{
-        const value=event.target.value
-        const name=event.target.name
-
-        // const{name,value}=event.target
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
         setData({
             ...data,
-            [name]: name === "image" ? event.target.files[0] : value
-        })
-        console.log( event.target.files[0])
-    }
+            [name]: name === "image" ? files[0] : value
+        });
+    };
+
+    // const handleChange=(event)=>{
+    //     const value=event.target.value
+    //     const name=event.target.name
+
+    //     // const{name,value}=event.target
+    //     setData({
+    //         ...data,
+    //         [name]: name === "image" ? event.target.files[0] : value
+    //     })
+    //     console.log( event.target.files[0])
+    // }
     // const createBlog=async(e)=>{
     //     e.preventDefault()
     //     const response=await axios.post("https://mern-3-0-1.onrender.com/blog",data,{
