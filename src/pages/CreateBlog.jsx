@@ -11,31 +11,70 @@ function CreateBlog(){
             description:"",
             image:""
     })
-    const handleChange=(event)=>{
-        const value=event.target.value
-        const name=event.target.name
+    const handleChange = (event) => {
+    const { name, value, type, files } = event.target;
+    setData({
+        ...data,
+        [name]: type === "file" ? files[0] : value
+    });
+};
 
-        // const{name,value}=event.target
-        setData({
-            ...data,
-            [name]: name === "image" ? event.target.files[0] : value
-        })
-        console.log( event.target.files[0])
-    }
-    const createBlog=async(e)=>{
-        e.preventDefault()
-        const response=await axios.post("https://mern-3-0-1.onrender.com/blog",data,{
-            headers:{
-                "Content-Type":"multipart/form-data"
+    // const handleChange=(event)=>{
+    //     const value=event.target.value
+    //     const name=event.target.name
+
+    //     // const{name,value}=event.target
+    //     setData({
+    //         ...data,
+    //         [name]: name === "image" ? event.target.files[0] : value
+    //     })
+    //     console.log( event.target.files[0])
+    // }
+    // const createBlog=async(e)=>{
+    //     e.preventDefault()
+    //     const response=await axios.post("https://mern-3-0-1.onrender.com/blog",data,{
+    //         headers:{
+    //             "Content-Type":"multipart/form-data"
+    //         }
+    //     })
+    //     if(response.status===200){
+    //         navigate("/")
+    //     }
+    //     else{
+    //         alert("Something Went Wrong!")
+    //     }
+    // }
+    
+    const createBlog = async (e) => {
+    e.preventDefault();
+
+    // 1. Create a FormData instance
+    const formData = new FormData();
+    
+    // 2. Append all fields manually
+    formData.append("title", data.title);
+    formData.append("subtitle", data.subtitle);
+    formData.append("description", data.description);
+    formData.append("image", data.image); // This is the file object
+
+    try {
+        const response = await axios.post("https://mern-3-0-1.onrender.com/blog", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
             }
-        })
-        if(response.status===200){
-            navigate("/")
+        });
+
+        if (response.status === 200 || response.status === 201) {
+            navigate("/");
+        } else {
+            alert("Something Went Wrong!");
         }
-        else{
-            alert("Something Went Wrong!")
-        }
+    } catch (error) {
+        console.error("Upload Error:", error);
+        alert("Failed to create blog. Check console.");
     }
+};
+
     return(
         <>
             <Navbar/>
