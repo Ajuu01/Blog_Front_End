@@ -11,7 +11,6 @@ import About from './pages/About'
 function App() {
   return (
     <>
-      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/create" element={<CreateBlog/>}/>
@@ -19,7 +18,6 @@ function App() {
           <Route path="/edit/:id" element={<EditBlog/>}/>
           <Route path="/about" element={<About/>}/>
         </Routes>
-      </BrowserRouter>
     </>
   )
 }
