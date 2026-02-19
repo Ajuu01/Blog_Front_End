@@ -77,21 +77,21 @@ function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden px-2 pt-2 pb-3 space-y-1 bg-white shadow-md">
-          <a href="/" className="block text-gray-700 hover:text-blue-600">
+          <Link to="/" className="block text-gray-700 hover:text-blue-600">
             Home
-          </a>
-          <a href="/about" className="block text-gray-700 hover:text-blue-600">
+          </Link>
+          <Link to="/about" className="block text-gray-700 hover:text-blue-600">
             About
-          </a>
-          <a href="/home" className="block text-gray-700 hover:text-blue-600">
+          </Link>
+          <Link to="/" className="block text-gray-700 hover:text-blue-600">
             Blogs
-          </a>
-          <a
-            href="/create"
+          </Link>
+          <Link
+            to="/create"
             className="block text-gray-700 hover:text-blue-600"
           >
             Create Blogs
-          </a>
+          </Link>
         </div>
       )}
     </nav>
