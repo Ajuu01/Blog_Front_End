@@ -83,14 +83,14 @@ function Navbar() {
           <a href="/about" className="block text-gray-700 hover:text-blue-600">
             About
           </a>
-          <a href="/blogs" className="block text-gray-700 hover:text-blue-600">
+          <a href="/home" className="block text-gray-700 hover:text-blue-600">
             Blogs
           </a>
           <a
-            href="/contact"
+            href="/create"
             className="block text-gray-700 hover:text-blue-600"
           >
-            Contact
+            Create Blogs
           </a>
         </div>
       )}
